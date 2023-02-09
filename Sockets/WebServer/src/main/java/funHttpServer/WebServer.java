@@ -25,10 +25,12 @@ import java.util.Random;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.nio.charset.Charset;
+import org.json.*;
+
 
 class WebServer {
   public static void main(String args[]) {
-    WebServer server = new WebServer(9000);
+    WebServer server = new WebServer(8080);
   }
 
   /**
@@ -197,25 +199,224 @@ class WebServer {
           // This multiplies two numbers, there is NO error handling, so when
           // wrong data is given this just crashes
 
+          Boolean correctFormat = true;
+          Boolean twoInputs = true;
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           // extract path parameters
           query_pairs = splitQuery(request.replace("multiply?", ""));
 
+          Integer num1;
+          Integer num2;
+
+          if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+            twoInputs = false;
+          }
+
           // extract required fields from parameters
-          Integer num1 = Integer.parseInt(query_pairs.get("num1"));
-          Integer num2 = Integer.parseInt(query_pairs.get("num2"));
+          try{
+            num1 = Integer.parseInt(query_pairs.get("num1"));
+          }
+          catch(NumberFormatException e){
+            num1 = 1;
+            correctFormat = false;
+          }
 
-          // do math
-          Integer result = num1 * num2;
+          try{
+            num2 = Integer.parseInt(query_pairs.get("num2"));
+          }
+          catch(NumberFormatException e){
+            num2 = 1;
+            correctFormat = false;
+          }
 
-          // Generate response
-          builder.append("HTTP/1.1 200 OK\n");
-          builder.append("Content-Type: text/html; charset=utf-8\n");
-          builder.append("\n");
-          builder.append("Result is: " + result);
+          if(twoInputs){
+            if(correctFormat){
+              // do math
+              Integer result = num1 * num2;
 
-          // TODO: Include error handling here with a correct error code and
-          // a response that makes sense
+              // Generate response
+              builder.append("HTTP/1.1 200 OK\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
+              builder.append("\n");
+              builder.append("Result is: " + result);
+            }else{
+              builder.append("HTTP/1.1 400 Bad Request\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
+              builder.append("\n");
+              builder.append("An argument is in the wrong format");
+            }  
+          }
+          else{
+
+            builder.append("HTTP/1.1 400 Bad Request\n");
+            builder.append("Content-Type: text/html; charset=utf-8\n");
+            builder.append("\n");
+            builder.append("An argument is missing");
+
+          }
+
+        } else if (request.contains("power?")) {
+
+          Boolean correctFormat = true;
+          Boolean twoInputs = true;
+          Int result;
+
+          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+
+          query_pairs = splitQuery(request.replace("fib?", ""));
+
+          Integer num1;
+          Integer num2;
+
+          if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+            twoInputs = false;
+          }
+
+          try{
+            num1 = Integer.parseInt(query_pairs.get("num1"));
+          }
+          catch(NumberFormatException e){
+            num1 = 1;
+            correctFormat = false;
+          }
+
+          try{
+            num2 = Integer.parseInt(query_pairs.get("num2"));
+          }
+          catch(NumberFormatException e){
+            num2 = 1;
+            correctFormat = false;
+          }
+
+          if(twoInputs){
+            if(correctFormat){
+
+              if(num1 < 0){
+                num1 = num1 * -1;
+              }
+
+              if(num2 < 0){
+                num2 = num2 * -1;
+              }
+
+              int current = 1;
+              
+              for(int i = 0; i <= num2; i++){
+                if(i != 0){
+                  current = current * num1;
+                }
+                result = result + current + ", ";
+              }
+
+              builder.append("HTTP/1.1 200 OK\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
+              builder.append("\n");
+              builder.append("Result is: " + result);
+            }
+            else{
+              builder.append("HTTP/1.1 400 Bad Request\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
+              builder.append("\n");
+              builder.append("An argument is in the wrong format");
+            } 
+          }
+          else{
+
+            builder.append("HTTP/1.1 400 Bad Request\n");
+            builder.append("Content-Type: text/html; charset=utf-8\n");
+            builder.append("\n");
+            builder.append("An argument is missing");
+
+          }
+        } else if (request.contains("fib?")) {
+
+          Boolean correctFormat = true;
+          Boolean twoInputs = true;
+          String result;
+
+          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+
+          query_pairs = splitQuery(request.replace("fib?", ""));
+
+          Integer num1;
+          Integer num2;
+
+          if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+            twoInputs = false;
+          }
+
+          try{
+            num1 = Integer.parseInt(query_pairs.get("num1"));
+          }
+          catch(NumberFormatException e){
+            num1 = 1;
+            correctFormat = false;
+          }
+
+          try{
+            num2 = Integer.parseInt(query_pairs.get("num2"));
+          }
+          catch(NumberFormatException e){
+            num2 = 1;
+            correctFormat = false;
+          }
+
+          if(twoInputs){
+            if(correctFormat){
+
+              int prev1 = 0;
+              int prev2 = 1;
+              int newFib = 1;
+
+              if(num1 < 0){
+                num1 = num1 * -1;
+              }
+
+              if(num2 < 0){
+                num2 = num2 * -1;
+              }
+
+              if(num1 < num2){
+                int temp = num1;
+                num1 = num2;
+                num2 = test;
+              }
+              
+              for(int i = num1; i <= num2; i++){
+
+                if(i == 1){
+                  result = result + 0 + ", ";
+                }
+                else if(i == 2){
+                  result = result + 1 + ", ";
+                }
+                else{
+                  newFib = prev1 + prev2;
+                  result = result + newFib + ", ";
+                  prev1 = prev2;
+                  prev2 = newFib;
+                }
+              }
+
+              builder.append("HTTP/1.1 200 OK\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
+              builder.append("\n");
+              builder.append("Result is: " + result);
+            }else{
+              builder.append("HTTP/1.1 400 Bad Request\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
+              builder.append("\n");
+              builder.append("An argument is in the wrong format");
+            } 
+          }
+          else{
+
+            builder.append("HTTP/1.1 400 Bad Request\n");
+            builder.append("Content-Type: text/html; charset=utf-8\n");
+            builder.append("\n");
+            builder.append("An argument is missing");
+
+          }
 
         } else if (request.contains("github?")) {
           // pulls the query from the request and runs it with GitHub's REST API
@@ -229,14 +430,37 @@ class WebServer {
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           query_pairs = splitQuery(request.replace("github?", ""));
           String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
-          System.out.println(json);
 
-          builder.append("HTTP/1.1 200 OK\n");
-          builder.append("Content-Type: text/html; charset=utf-8\n");
-          builder.append("\n");
-          builder.append("Check the todos mentioned in the Java source file");
-          // TODO: Parse the JSON returned by your fetch and create an appropriate
-          // response based on what the assignment document asks for
+          if(json == null){
+
+            builder.append("HTTP/1.1 400 Bad Request\n");
+            builder.append("Content-Type: text/html; charset=utf-8\n");
+            builder.append("\n");
+            builder.append("Invalid request");
+          }
+          else{
+            String output;
+
+            JSONArray repoArray = new JSONArray(json);
+
+            for(int i=0; i<repoArray.length(); i++){
+
+              JSONObject repo = repoArray.getJSONObject(i);
+
+              String repoFullName = repo.getString("full_name");
+              String repoID = repo.getString("id");
+            
+              JSONObject owner = repo.getJSONObject("owner");
+              String ownername = owner.getString("login");
+
+              output = output + "{ Full Name: " + repoFullName + "\n" + "ID: " + repoID + "\n" + "Login Name: " + ownername + "\n" + "}\n";
+            }
+
+            builder.append("HTTP/1.1 200 OK\n");
+            builder.append("Content-Type: text/html; charset=utf-8\n");
+            builder.append("\n");
+            builder.append(output);
+          }
 
         } else {
           // if the request is not recognized at all

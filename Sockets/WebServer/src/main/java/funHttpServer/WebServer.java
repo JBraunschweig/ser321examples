@@ -200,8 +200,9 @@ class WebServer {
 
           Boolean correctFormat = true;
           Boolean twoInputs = true;
-          Integer num1;
-          Integer num2;
+          Integer num1 = 0;
+          Integer num2 = 0;
+          
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           // extract path parameters
 
@@ -268,8 +269,8 @@ class WebServer {
           Boolean correctFormat = true;
           Boolean twoInputs = true;
           String result = "";
-          Integer num1;
-          Integer num2;
+          Integer num1 = 0;
+          Integer num2 = 0;
 
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
 
@@ -351,8 +352,8 @@ class WebServer {
           Boolean correctFormat = true;
           Boolean twoInputs = true;
           String result = "";
-          Integer num1;
-          Integer num2;
+          Integer num1 = 0;
+          Integer num2 = 0;
 
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
 

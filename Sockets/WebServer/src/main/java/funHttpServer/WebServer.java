@@ -238,6 +238,7 @@ class WebServer {
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
               builder.append("Result is: " + result);
+
             }else{
               builder.append("HTTP/1.1 400 Bad Request\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
@@ -304,7 +305,11 @@ class WebServer {
                 if(i != 0){
                   current = current * num1;
                 }
-                result = result + current + ", ";
+                result = result + current;
+
+                if(i != num2){
+                  result = result + ", ";
+                }
               }
 
               builder.append("HTTP/1.1 200 OK\n");

@@ -386,25 +386,27 @@ class WebServer {
               }
 
               if(num1 < 2){
-                result = result + "0";
+                result = result + "0, ";
               }
-              else if(num1 < 3){
-                result = result + ", 1";
+
+              if(num1 < 3){
+                result = result + "1, ";
               }
               
               for(int i = 0; i <= num2; i++){
         
                 newFib = prev1 + prev2;
 
-                if(i > 2){
+                if(i >= num1){
                   result = result + newFib;
                   if(i != num2){
                     result = result + ", ";
                   }
-
-                  prev1 = prev2;
-                  prev2 = newFib;
                 }
+
+                prev1 = prev2;
+                prev2 = newFib;
+
               }
 
               builder.append("HTTP/1.1 200 OK\n");

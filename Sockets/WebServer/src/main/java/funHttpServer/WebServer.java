@@ -393,7 +393,7 @@ class WebServer {
                 result = result + "1, ";
               }
               
-              for(int i = 0; i <= num2; i++){
+              for(int i = 2; i <= num2; i++){
         
                 newFib = prev1 + prev2;
 
@@ -406,7 +406,6 @@ class WebServer {
 
                 prev1 = prev2;
                 prev2 = newFib;
-
               }
 
               builder.append("HTTP/1.1 200 OK\n");

@@ -301,7 +301,7 @@ class WebServer {
 
               int current = 1;
               
-              for(int i = 0; i <= num2; i++){
+              for(int i = 0; i < num2; i++){
                 if(i != 0){
                   current = current * num1;
                 }
@@ -388,10 +388,10 @@ class WebServer {
               for(int i = num1; i <= num2; i++){
 
                 if(i == 1){
-                  result = result + 0 + ", ";
+                  result = result + "0, ";
                 }
                 else if(i == 2){
-                  result = result + 1 + ", ";
+                  result = result + "1, ";
                 }
                 else{
                   newFib = prev1 + prev2;
@@ -405,7 +405,9 @@ class WebServer {
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
               builder.append("Result is: " + result);
+
             }else{
+
               builder.append("HTTP/1.1 400 Bad Request\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
@@ -418,7 +420,6 @@ class WebServer {
             builder.append("Content-Type: text/html; charset=utf-8\n");
             builder.append("\n");
             builder.append("An argument is missing");
-
           }
 
         } else if (request.contains("github?")) {

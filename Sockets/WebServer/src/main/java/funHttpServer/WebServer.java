@@ -63,7 +63,6 @@ class WebServer {
         try {
           server.close();
         } catch (IOException e) {
-          // TODO Auto-generated catch block
           e.printStackTrace();
         }
       }
@@ -259,7 +258,7 @@ class WebServer {
 
           Boolean correctFormat = true;
           Boolean twoInputs = true;
-          Int result;
+          String result = "";
 
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
 
@@ -332,7 +331,7 @@ class WebServer {
 
           Boolean correctFormat = true;
           Boolean twoInputs = true;
-          String result;
+          String result = "";
 
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
 
@@ -379,7 +378,7 @@ class WebServer {
               if(num1 < num2){
                 int temp = num1;
                 num1 = num2;
-                num2 = test;
+                num2 = temp;
               }
               
               for(int i = num1; i <= num2; i++){
@@ -439,7 +438,7 @@ class WebServer {
             builder.append("Invalid request");
           }
           else{
-            String output;
+            String output = "";
 
             JSONArray repoArray = new JSONArray(json);
 

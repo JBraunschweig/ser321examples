@@ -30,7 +30,7 @@ import org.json.*;
 
 class WebServer {
   public static void main(String args[]) {
-    WebServer server = new WebServer(8080);
+    WebServer server = new WebServer(9000);
   }
 
   /**
@@ -200,32 +200,40 @@ class WebServer {
 
           Boolean correctFormat = true;
           Boolean twoInputs = true;
-          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
-          // extract path parameters
-          query_pairs = splitQuery(request.replace("multiply?", ""));
-
           Integer num1;
           Integer num2;
+          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+          // extract path parameters
 
-          if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+          try{
+            query_pairs = splitQuery(request.replace("multiply?", ""));
+          }
+          catch(StringIndexOutOfBoundsException e){
             twoInputs = false;
           }
 
-          // extract required fields from parameters
-          try{
-            num1 = Integer.parseInt(query_pairs.get("num1"));
-          }
-          catch(NumberFormatException e){
-            num1 = 1;
-            correctFormat = false;
-          }
+          if(twoInputs = true){
 
-          try{
-            num2 = Integer.parseInt(query_pairs.get("num2"));
-          }
-          catch(NumberFormatException e){
-            num2 = 1;
-            correctFormat = false;
+            if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+              twoInputs = false;
+            }
+
+            // extract required fields from parameters
+            try{
+              num1 = Integer.parseInt(query_pairs.get("num1"));
+            }
+            catch(NumberFormatException e){
+              num1 = 1;
+              correctFormat = false;
+            }
+
+            try{
+              num2 = Integer.parseInt(query_pairs.get("num2"));
+            }
+            catch(NumberFormatException e){
+              num2 = 1;
+              correctFormat = false;
+            }
           }
 
           if(twoInputs){
@@ -260,32 +268,39 @@ class WebServer {
           Boolean correctFormat = true;
           Boolean twoInputs = true;
           String result = "";
-
-          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
-
-          query_pairs = splitQuery(request.replace("power?", ""));
-
           Integer num1;
           Integer num2;
 
-          if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+
+          try{
+            query_pairs = splitQuery(request.replace("power?", ""));
+          }
+          catch(StringIndexOutOfBoundsException e){
             twoInputs = false;
           }
 
-          try{
-            num1 = Integer.parseInt(query_pairs.get("num1"));
-          }
-          catch(NumberFormatException e){
-            num1 = 1;
-            correctFormat = false;
-          }
+          if(twoInputs = true){
 
-          try{
-            num2 = Integer.parseInt(query_pairs.get("num2"));
-          }
-          catch(NumberFormatException e){
-            num2 = 1;
-            correctFormat = false;
+            if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+              twoInputs = false;
+            }
+
+            try{
+              num1 = Integer.parseInt(query_pairs.get("num1"));
+            }
+            catch(NumberFormatException e){
+              num1 = 1;
+              correctFormat = false;
+            }
+
+            try{
+              num2 = Integer.parseInt(query_pairs.get("num2"));
+            }
+            catch(NumberFormatException e){
+              num2 = 1;
+              correctFormat = false;
+            }
           }
 
           if(twoInputs){
@@ -336,32 +351,38 @@ class WebServer {
           Boolean correctFormat = true;
           Boolean twoInputs = true;
           String result = "";
-
-          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
-
-          query_pairs = splitQuery(request.replace("fib?", ""));
-
           Integer num1;
           Integer num2;
 
-          if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+
+          try{
+            query_pairs = splitQuery(request.replace("fib?", ""));
+          }
+          catch(StringIndexOutOfBoundsException e){
             twoInputs = false;
           }
 
-          try{
-            num1 = Integer.parseInt(query_pairs.get("num1"));
-          }
-          catch(NumberFormatException e){
-            num1 = 1;
-            correctFormat = false;
-          }
+          if(twoInputs = true){
+            if(query_pairs.get("num1") == null || query_pairs.get("num2") == null){
+              twoInputs = false;
+            }
 
-          try{
-            num2 = Integer.parseInt(query_pairs.get("num2"));
-          }
-          catch(NumberFormatException e){
-            num2 = 1;
-            correctFormat = false;
+            try{
+              num1 = Integer.parseInt(query_pairs.get("num1"));
+            }
+            catch(NumberFormatException e){
+              num1 = 1;
+              correctFormat = false;
+            }
+
+            try{
+              num2 = Integer.parseInt(query_pairs.get("num2"));
+            }
+            catch(NumberFormatException e){
+              num2 = 1;
+              correctFormat = false;
+            }
           }
 
           if(twoInputs){

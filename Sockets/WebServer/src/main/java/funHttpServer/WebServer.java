@@ -262,7 +262,7 @@ class WebServer {
 
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
 
-          query_pairs = splitQuery(request.replace("fib?", ""));
+          query_pairs = splitQuery(request.replace("power?", ""));
 
           Integer num1;
           Integer num2;
@@ -318,8 +318,7 @@ class WebServer {
               builder.append("\n");
               builder.append("An argument is in the wrong format");
             } 
-          }
-          else{
+          }else{
 
             builder.append("HTTP/1.1 400 Bad Request\n");
             builder.append("Content-Type: text/html; charset=utf-8\n");

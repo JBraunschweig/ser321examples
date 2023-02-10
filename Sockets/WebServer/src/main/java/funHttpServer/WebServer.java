@@ -307,7 +307,7 @@ class WebServer {
                 }
                 result = result + current;
 
-                if(i != num2){
+                if(i == num2 - 1){
                   result = result + ", ";
                 }
               }
@@ -385,7 +385,7 @@ class WebServer {
                 num2 = temp;
               }
               
-              for(int i = num1; i <= num2; i++){
+              for(int i = 0; i <= num2; i++){
 
                 if(i == 1){
                   result = result + "0, ";
@@ -395,7 +395,14 @@ class WebServer {
                 }
                 else{
                   newFib = prev1 + prev2;
-                  result = result + newFib + ", ";
+
+                  if(i >= num1){
+                    result = result + newFib;
+                    if(i != num2){
+                      result = result + ", ";
+                    }
+                  }
+                  
                   prev1 = prev2;
                   prev2 = newFib;
                 }

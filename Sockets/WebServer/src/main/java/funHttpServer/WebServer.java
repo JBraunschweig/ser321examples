@@ -399,7 +399,7 @@ class WebServer {
 
                 if(i >= num1 - 1){
                   result = result + newFib;
-                  if(i != num2){
+                  if(i != num2 - 1){
                     result = result + ", ";
                   }
                 }

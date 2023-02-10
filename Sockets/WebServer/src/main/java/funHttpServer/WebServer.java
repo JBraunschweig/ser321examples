@@ -397,7 +397,7 @@ class WebServer {
         
                 newFib = prev1 + prev2;
 
-                if(i >= num1){
+                if(i >= num1 - 1){
                   result = result + newFib;
                   if(i != num2){
                     result = result + ", ";
@@ -443,6 +443,7 @@ class WebServer {
           String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
 
           if(json == null){
+
             builder.append("HTTP/1.1 400 Bad Request\n");
             builder.append("Content-Type: text/html; charset=utf-8\n");
             builder.append("\n");

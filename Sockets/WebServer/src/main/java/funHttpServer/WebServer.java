@@ -393,7 +393,7 @@ class WebServer {
                 result = result + "1, ";
               }
               
-              for(int i = 2; i <= num2; i++){
+              for(int i = 2; i < num2; i++){
         
                 newFib = prev1 + prev2;
 
